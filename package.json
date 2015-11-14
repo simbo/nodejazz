@@ -1,0 +1,19 @@
+{
+  "name": "nodejazz",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simbo/nodejazz.git"
+  },
+  "author": "Simon Lepel <simbo@simbo.de> (http://simbo.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simbo/nodejazz/issues"
+  },
+  "homepage": "https://github.com/simbo/nodejazz#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
