@@ -7,7 +7,8 @@ var browserify = require('browserify'),
     glob = require('glob'),
     vinylBuffer = require('vinyl-buffer'),
     vinylSource = require('vinyl-source-stream'),
-    watchify = require('watchify');
+    watchify = require('watchify'),
+    uglifyify = require('uglifyify');
 
 function Bundler(plug, file, src, dest, watch) {
 
@@ -50,12 +51,10 @@ function Bundler(plug, file, src, dest, watch) {
         );
     });
 
+    this.bundle.transform({global: true}, uglifyify);
 
     this.output = function() {
         return this.bundle
-            .transform({
-                global: true
-            }, 'uglifyify')
             .bundle()
             .on('error', function(err) {
                 plug.util.log(err.toString());
