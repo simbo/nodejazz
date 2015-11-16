@@ -27,6 +27,7 @@
     "csswring": "4.0.0",
     "del": "2.1.0",
     "eslint-config-simbo": "0.1.2",
+    "eslintify": "0.0.3",
     "event-stream": "3.3.2",
     "glob": "6.0.1",
     "gulp": "3.9.0",

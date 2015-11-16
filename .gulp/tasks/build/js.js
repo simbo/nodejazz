@@ -8,6 +8,7 @@ var browserify = require('browserify'),
     vinylBuffer = require('vinyl-buffer'),
     vinylSource = require('vinyl-source-stream'),
     watchify = require('watchify'),
+    eslintify = require('eslintify'),
     uglifyify = require('uglifyify');
 
 function Bundler(plug, file, src, dest, watch) {
@@ -51,6 +52,7 @@ function Bundler(plug, file, src, dest, watch) {
         );
     });
 
+    this.bundle.transform(eslintify);
     this.bundle.transform({global: true}, uglifyify);
 
     this.output = function() {
