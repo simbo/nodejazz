@@ -50,9 +50,6 @@ function Bundler(plug, file, src, dest, watch) {
         );
     });
 
-    this.bundle.on('error', function(err) {
-        plug.util.log(err);
-    });
 
     this.output = function() {
         return this.bundle
@@ -60,6 +57,10 @@ function Bundler(plug, file, src, dest, watch) {
                 global: true
             }, 'uglifyify')
             .bundle()
+            .on('error', function(err) {
+                plug.util.log(err.toString());
+                this.emit('end');
+            })
             .pipe(vinylSource(file))
             .pipe(vinylBuffer())
             .pipe(plug.plugins.plumber())
