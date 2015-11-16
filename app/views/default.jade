@@ -1,0 +1,9 @@
+extends html5
+
+block append head
+    link(rel="stylesheet", href="/assets/css/default.#{pkg.version}.css")
+
+block body
+    block content
+        h1= title
+    script(src="/assets/js/default.#{pkg.version}.js")
