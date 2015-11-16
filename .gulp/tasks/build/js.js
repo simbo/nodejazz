@@ -47,6 +47,7 @@ function Bundler(plug, file, src, dest, watch) {
 
     this.bundle.on('log', function(msg) {
         plug.util.log(
+            plug.util.colors.green('✓ ') +
             'Bundled ' + plug.util.colors.magenta(file) +
             ' ' + plug.util.colors.gray(msg)
         );
