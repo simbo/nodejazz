@@ -1,2 +1,7 @@
-/node_modules
+node_modules
 npm-debug.log
+
+/.vagrant
+
+/app/static/assets/css
+/app/static/assets/js
