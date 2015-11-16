@@ -36,6 +36,7 @@
     "gulpplug": "1.3.0",
     "jquery": "2.1.4",
     "lost": "6.6.2",
+    "pm2": "0.15.10",
     "rucksack-css": "0.8.5",
     "uglifyify": "3.0.1",
     "vinyl-buffer": "1.0.0",
