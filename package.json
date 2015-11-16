@@ -25,6 +25,7 @@
     "browserify": "12.0.1",
     "css-mqpacker": "4.0.0",
     "csswring": "4.0.0",
+    "del": "2.1.0",
     "event-stream": "3.3.2",
     "glob": "6.0.1",
     "gulp": "3.9.0",
