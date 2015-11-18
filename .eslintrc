@@ -1,6 +1,8 @@
 {
   "extends": "simbo/default/node",
   "rules": {
+    "require-jsdoc": 0,
+    "sort-vars": 0,
     "new-cap": [2, {
       "capIsNewExceptions": [
         "require('express').Router",
