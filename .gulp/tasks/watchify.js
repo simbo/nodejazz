@@ -6,7 +6,7 @@ module.exports = [
 
     function(done) {
         this.watchify = true;
-        this.runSequence('build:js', done);
+        this.runSequence('clean:js', 'build:js', done);
     }
 
 ];
