@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        block head
+            meta(charset="utf-8")
+            meta(http-equiv="X-UA-Compatible", content="IE=edge")
+            title= page.title
+            block head_css
+                link(rel="stylesheet", href="/assets/css/default.#{app.version}.css")
+            block head_js
+            script
+                :uglify
+                    function bla() {
+                        console.log('blubb');
+                    }
+                    bla();
+    body
+        block body
+            h1= page.title
+        block body_js
+            script(src="/assets/js/default.#{app.version}.js")
