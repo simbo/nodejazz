@@ -1,35 +1,30 @@
 'use strict';
 
-// require code modules
-var path = require('path');
-
 // require modules
-var express = require('express'),
-    jade = require('jade');
+var _ = require('lodash'),
+    jade = require('jade'),
+    express = require('express');
 
-// require configs
-var settings = require('config/settings'),
-    routes = require('config/routes');
+// require local modules
+var config = require('config');
 
 // scope vars
 var app = express(),
     server;
 
-// app locals
-app.locals = {
-    pkg: require('../package.json')
-};
+// assign locals
+_.assign(app.locals, config.locals);
 
 // view engine setup
 app.engine('jade', jade.__express);
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', config.paths.views);
 app.set('view engine', 'jade');
 
 // serve static files
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(config.paths.static));
 
 // apply routes
-routes.forEach(function(route) {
+config.routes.forEach(function(route) {
     app.use(route[0], require('routes/' + route[1]));
 });
 
@@ -51,8 +46,8 @@ app.use(function(err, req, res) {
 
 // listen
 server = app.listen(
-    settings.server.port,
-    settings.server.host,
+    config.settings.server.port,
+    config.settings.server.host,
     function() {
         var address = server.address();
         console.log('Ready. (listening on ' + address.address + ':' + address.port + ')');
