@@ -2,11 +2,11 @@
 
 // require modules
 var _ = require('lodash'),
-    jade = require('jade'),
     express = require('express');
 
 // require local modules
-var config = require('config');
+var config = require('config'),
+    renderer = require('modules/renderer');
 
 // scope vars
 var app = express(),
@@ -16,7 +16,7 @@ var app = express(),
 _.assign(app.locals, config.locals);
 
 // view engine setup
-app.engine('jade', jade.__express);
+app.engine('jade', renderer.__express);
 app.set('views', config.paths.views);
 app.set('view engine', 'jade');
 
