@@ -1,0 +1,24 @@
+{
+  "couch": {
+    "user": "dev",
+    "password": "dev",
+    "host": "localhost",
+    "port": 5984
+  },
+  "app": {
+    "host": "127.0.0.1",
+    "port": 8080
+  },
+  "sessions": {
+    "secret": "SESSION_SECRET",
+    "sid": "sid",
+    "db": "sessions",
+    "collection": "sessions",
+    "cookie": {
+      "path": "/",
+      "httpOnly": true,
+      "secure": false,
+      "maxAge": 20160
+    }
+  }
+}

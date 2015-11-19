@@ -1,10 +1,10 @@
 'use strict';
 
 var config = {
-    settings: require('./settings'),
-    routes: require('./routes'),
-    paths: require('./paths'),
-    locals: require('./locals')
+    settings: require('config/settings'),
+    routes: require('config/routes'),
+    paths: require('config/paths'),
+    locals: require('config/locals')
 };
 
 module.exports = config;

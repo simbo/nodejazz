@@ -37,8 +37,8 @@ app.use(errorhandler);
 
 // listen
 server = app.listen(
-    config.settings.server.port,
-    config.settings.server.host,
+    config.settings.app.port,
+    config.settings.app.host,
     function() {
         var address = server.address();
         console.log('Ready. (listening on ' + address.address + ':' + address.port + ')');
