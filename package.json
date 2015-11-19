@@ -17,8 +17,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "cradle": "0.6.9",
     "express": "4.13.3",
-    "jade": "1.11.0"
+    "express-session": "1.12.1",
+    "jade": "1.11.0",
+    "lodash": "3.10.1",
+    "sessionstore": "1.2.7",
+    "uuid": "2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "6.1.0",

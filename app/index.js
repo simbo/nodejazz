@@ -7,7 +7,8 @@ var _ = require('lodash'),
 // require local modules
 var config = require('config'),
     errorhandler = require('modules/errorhandler'),
-    renderer = require('modules/renderer');
+    renderer = require('modules/renderer'),
+    sessions = require('modules/sessions');
 
 // scope vars
 var app = express(),
@@ -20,6 +21,9 @@ _.assign(app.locals, config.locals);
 app.engine('jade', renderer.__express);
 app.set('views', config.paths.views);
 app.set('view engine', 'jade');
+
+// use sessions sessions
+app.use(sessions);
 
 // serve static files
 app.use(express.static(config.paths.static));
