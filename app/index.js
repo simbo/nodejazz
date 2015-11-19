@@ -6,6 +6,7 @@ var _ = require('lodash'),
 
 // require local modules
 var config = require('config'),
+    errorhandler = require('modules/errorhandler'),
     renderer = require('modules/renderer');
 
 // scope vars
@@ -29,10 +30,10 @@ config.routes.forEach(function(route) {
 });
 
 // catch 404 and forward to error handler
-app.use(errors.error404);
+app.use(errorhandler.error404);
 
 // error handler
-app.use(errors.error);
+app.use(errorhandler);
 
 // listen
 server = app.listen(

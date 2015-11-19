@@ -1,6 +1,6 @@
 extends ../layouts/default
 
-block content
+block body
     h1= page.title
     p Error #{error.status || 'UNKNOWN'}
     pre #{error.stack}
