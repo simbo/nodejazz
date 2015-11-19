@@ -14,13 +14,23 @@ nodejazz
 `git clone` and `vagrant up`.
 
 
-### VM
+### Process management
 
-Within `/vagrant`…
+In the vitual machine…
+
+  - `pm2-dev log` ➜ realtime app process log
+  - `pm2 start nodejazz` ➜ start nodejazz
+  - `pm2 restart nodejazz` ➜ restart nodejazz
+  - `pm2 stop nodejazz` ➜ stop nodejazz
+
+
+### Gulp tasks
+
+In the vm, in `/vagrant`…
 
   - `gulp dev` ➜ watch, watchify and app live log
   - `gulp app:reload` ➜ reload app process
-  - `gulp app:log` ➜ realtime app process log (`pm2-dev log`)
+  - `gulp app:log` ➜ realtime app process log (like `pm2-dev log`)
   - `gulp build` ➜ build everything
   - `gulp build:css` ➜ parse stylus to css, pipe through postcss
   - `gulp build:js` ➜ browserify javascripts
@@ -29,6 +39,7 @@ Within `/vagrant`…
   - `gulp clean:js` ➜ delete generated jacascripts
   - `gulp watch` ➜ watch everything (except javascripts) and react on changes
   - `gulp watchify` ➜ watch javascripts and react on changes
+  - `gulp watch watchify` ➜ watch everything and react on changes
 
 
 ### Browser
