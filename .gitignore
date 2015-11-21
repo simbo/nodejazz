@@ -3,5 +3,6 @@ npm-debug.log
 
 /.vagrant
 
+/app/log
 /app/static/assets/css
 /app/static/assets/js

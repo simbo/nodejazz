@@ -7,6 +7,7 @@ var _ = require('lodash'),
 // require local modules
 var config = require('config'),
     errorhandler = require('modules/errorhandler'),
+    logger = require('modules/logger'),
     renderer = require('modules/renderer'),
     sessions = require('modules/sessions');
 
@@ -45,6 +46,6 @@ server = app.listen(
     config.settings.app.host,
     function() {
         var address = server.address();
-        console.log('Ready. (listening on ' + address.address + ':' + address.port + ')');
+        logger.log('info', 'server started (listening on %s:%s)', address.address, address.port);
     }
 );
