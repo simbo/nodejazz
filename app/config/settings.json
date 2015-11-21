@@ -1,9 +1,13 @@
 {
   "couch": {
-    "user": "dev",
-    "password": "dev",
-    "host": "localhost",
-    "port": 5984
+    "host": "127.0.0.1",
+    "port": 5984,
+    "auth": false,
+    "ssl": false,
+    "dbNames": {
+      "log": "log",
+      "sessions": "sessions"
+    }
   },
   "app": {
     "host": "127.0.0.1",
@@ -12,7 +16,6 @@
   "sessions": {
     "secret": "SESSION_SECRET",
     "sid": "sid",
-    "db": "sessions",
     "collection": "sessions",
     "cookie": {
       "path": "/",
