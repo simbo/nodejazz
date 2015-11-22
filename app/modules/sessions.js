@@ -11,9 +11,7 @@ var store = sessionstore.createSessionStore({
     host: 'http://' + settings.couch.host,
     port: settings.couch.port,
     dbName: settings.couch.dbNames.sessions,
-    options: {
-        auth: settings.couch.auth
-    },
+    options: settings.couch.connectionOptions,
     collectionName: settings.sessions.collection,
     timeout: 10000
 });

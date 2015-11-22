@@ -58,8 +58,7 @@ logger = new winston.Logger({
             host: config.settings.couch.host,
             port: config.settings.couch.host,
             db: 'log',
-            auth: config.settings.couch.auth,
-            ssl: config.settings.couch.ssl,
+            auth: config.settings.couch.connectionOptions.auth,
             handleExceptions: true
         })
     ]

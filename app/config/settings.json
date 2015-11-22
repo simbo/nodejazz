@@ -2,8 +2,13 @@
   "couch": {
     "host": "127.0.0.1",
     "port": 5984,
-    "auth": false,
-    "ssl": false,
+    "connectionOptions": {
+      "auth": {
+        "username": "dev",
+        "password": "dev"
+      },
+      "secure": false
+    },
     "dbNames": {
       "log": "log",
       "sessions": "sessions"
