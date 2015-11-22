@@ -8,6 +8,8 @@ var mkdirp = require('mkdirp'),
 
 var config = require('config');
 
+var env = process.env.NODE_ENV;
+
 var logger, loglevels;
 
 winston.transports.DailyRotateFile = require('winston-daily-rotate-file');
@@ -31,11 +33,12 @@ logger = new winston.Logger({
         levels[level] = loglevels[level][0];
         return levels;
     }, {}),
-    exitOnError: false,
+    exitOnError: env === 'production',
     transports: [
         new winston.transports.Console({
+            silent: env === 'production',
             colorize: true,
-            handleExceptions: true,
+            handleExceptions: false,
             timestamp: function() {
                 return moment(new Date()).format('hh:mm:ss');
             },
@@ -44,11 +47,13 @@ logger = new winston.Logger({
             }
         }),
         new winston.transports.DailyRotateFile({
+            silent: env === 'development',
             filename: path.join(config.paths.log, 'app'),
             datePattern: '.yyyy-MM-dd.log',
             handleExceptions: true
         }),
         new winston.transports.Couchdb({
+            silent: false,
             host: config.settings.couch.host,
             port: config.settings.couch.host,
             db: 'log',
