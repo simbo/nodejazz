@@ -43,7 +43,8 @@ logger = new winston.Logger({
                 return moment(new Date()).format('hh:mm:ss');
             },
             prettyPrint: function(meta) {
-                return '\n' + meta.stack;
+                var stack = meta.stack;
+                return '\n' + (Array.isArray(stack) ? stack.join('\n') : stack);
             }
         }),
         new winston.transports.DailyRotateFile({
