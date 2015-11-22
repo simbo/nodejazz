@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash'),
+var assign = require('lodash.assign'),
     jade = require('jade'),
     uglify = require('uglify-js');
 
@@ -19,7 +19,7 @@ jade.filters.uglify = function(data) {
 };
 
 function renderer(path, options, fn) {
-    options = _.assign(renderOptions, options);
+    options = assign(renderOptions, options);
     jade.renderFile(path, options, fn);
 }
 

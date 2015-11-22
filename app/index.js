@@ -1,7 +1,7 @@
 'use strict';
 
 // require modules
-var _ = require('lodash'),
+var assign = require('lodash.assign'),
     express = require('express');
 
 // require local modules
@@ -16,7 +16,7 @@ var app = express(),
     server;
 
 // assign locals
-_.assign(app.locals, config.locals);
+assign(app.locals, config.locals);
 
 // view engine setup
 app.engine('jade', renderer.__express);

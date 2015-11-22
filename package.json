@@ -22,7 +22,7 @@
     "express-session": "1.12.1",
     "jade": "1.11.0",
     "jquery": "2.1.4",
-    "lodash": "3.10.1",
+    "lodash.assign": "^3.2.0",
     "sessionstore": "1.2.7",
     "uuid": "2.0.1",
     "winston": "^2.1.1",
