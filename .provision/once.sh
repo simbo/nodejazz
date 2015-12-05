@@ -22,7 +22,7 @@ sudo service nginx restart
 echo_c "Configuring NODE_PATH..."
 export NODE_PATH="/vagrant/app"
 if [ -z $(grep -q "export NODE_PATH=${NODE_PATH}" "${HOME}/.zshenv") ]; then
-    cat >>${HOME}/.zshenv <<EOL
+  cat >>${HOME}/.zshenv <<EOL
 
 # node path for requiring modules
 export NODE_PATH=${NODE_PATH}
@@ -40,7 +40,7 @@ sudo su -c "env PATH=$PATH:/home/vagrant/.nvm/versions/node/v5.0.0/bin pm2 start
 # customize .zshrc
 echo_c "Customizing .zshrc..."
 if [ -z $(grep -q "cd /vagrant" "${HOME}/.zshrc") ]; then
-    cat >>${HOME}/.zshenv <<EOL
+  cat >>${HOME}/.zshenv <<EOL
 
 cd /vagrant
 EOL
