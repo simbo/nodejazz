@@ -2,14 +2,14 @@
 
 module.exports = [
 
-    'build everything',
+  'build everything',
 
-    function(done) {
-        this.runSequence(
-            ['clean'],
-            ['build:js', 'build:css'],
-            done
-        );
-    }
+  function(done) {
+    this.runSequence(
+      ['clean'],
+      ['build:js', 'build:css'],
+      done
+    );
+  }
 
 ];

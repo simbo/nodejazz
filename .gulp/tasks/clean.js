@@ -2,13 +2,13 @@
 
 module.exports = [
 
-    'delete all generated',
+  'delete all generated',
 
-    function(done) {
-        this.runSequence(
-            ['clean:js', 'clean:css'],
-            done
-        );
-    }
+  function(done) {
+    this.runSequence(
+      ['clean:js', 'clean:css'],
+      done
+    );
+  }
 
 ];

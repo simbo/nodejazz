@@ -13,101 +13,101 @@ var browserify = require('browserify'),
 
 function Bundler(plug, file, src, dest, watch) {
 
-    var srcFile = path.join(src, file),
-        watchMsg = 'Watching bundle ' + plug.util.colors.magenta(file) + '...';
+  var srcFile = path.join(src, file),
+      watchMsg = 'Watching bundle ' + plug.util.colors.magenta(file) + '...';
 
-    this.bundle = watchify(browserify({
-        entries: [srcFile],
-        insertGlobals: false,
-        paths: [
-            src,
-            path.join(plug.paths.cwd, 'node_modules'),
-            path.join(plug.paths.cwd, 'bower_components')
-        ],
-        debug: true,
-        transform: [],
-        cache: {},
-        packageCache: {}
-    }), {
-        delay: 100,
-        ignoreWatch: ['**/node_modules/**'],
-        poll: true
-    });
+  this.bundle = watchify(browserify({
+    entries: [srcFile],
+    insertGlobals: false,
+    paths: [
+        src,
+        path.join(plug.paths.cwd, 'node_modules'),
+        path.join(plug.paths.cwd, 'bower_components')
+    ],
+    debug: true,
+    transform: [],
+    cache: {},
+    packageCache: {}
+  }), {
+    delay: 100,
+    ignoreWatch: ['**/node_modules/**'],
+    poll: true
+  });
 
-    this.bundle.on('update', function(id) {
-        var eventFile = path.relative(src, id[0]);
-        plug.util.log(
-            plug.util.colors.yellow('☀ ') +
-            'File ' + plug.util.colors.magenta(eventFile) + ' updated. ' +
-            'Bundling ' + plug.util.colors.magenta(file) +
-            '...'
-        );
-        this.output();
-    }.bind(this));
+  this.bundle.on('update', function(id) {
+    var eventFile = path.relative(src, id[0]);
+    plug.util.log(
+      plug.util.colors.yellow('☀ ') +
+      'File ' + plug.util.colors.magenta(eventFile) + ' updated. ' +
+      'Bundling ' + plug.util.colors.magenta(file) +
+      '...'
+    );
+    this.output();
+  }.bind(this));
 
-    this.bundle.on('log', function(msg) {
-        plug.util.log(
-            plug.util.colors.green('✓ ') +
-            'Bundled ' + plug.util.colors.magenta(file) +
-            ' ' + plug.util.colors.gray(msg)
-        );
-    });
+  this.bundle.on('log', function(msg) {
+    plug.util.log(
+      plug.util.colors.green('✓ ') +
+      'Bundled ' + plug.util.colors.magenta(file) +
+      ' ' + plug.util.colors.gray(msg)
+    );
+  });
 
-    this.bundle.transform(eslintify);
-    this.bundle.transform({global: true}, uglifyify);
+  this.bundle.transform(eslintify);
+  this.bundle.transform({global: true}, uglifyify);
 
-    this.output = function() {
-        return this.bundle
-            .bundle()
-            .on('error', function(err) {
-                plug.util.log(err.toString());
-                this.emit('end');
-            })
-            .pipe(vinylSource(file))
-            .pipe(vinylBuffer())
-            .pipe(plug.plugins.plumber())
-            .pipe(plug.plugins.extReplace(plug.pkg.version + '.js', '.js'))
-            .pipe(plug.plugins.sourcemaps.init({
-                loadMaps: true
-            }))
-            .pipe(plug.plugins.sourcemaps.write('.', {
-                includeContent: true,
-                sourceRoot: '.'
-            }))
-            .pipe(plug.gulp.dest(dest))
-            .on('end', function() {
-                if (!watch) {
-                    this.bundle.close();
-                } else if (watchMsg) {
-                    plug.util.log(watchMsg);
-                    watchMsg = false;
-                }
-            }.bind(this));
-    };
+  this.output = function() {
+    return this.bundle
+      .bundle()
+      .on('error', function(err) {
+        plug.util.log(err.toString());
+        this.emit('end');
+      })
+      .pipe(vinylSource(file))
+      .pipe(vinylBuffer())
+      .pipe(plug.plugins.plumber())
+      .pipe(plug.plugins.extReplace(plug.pkg.version + '.js', '.js'))
+      .pipe(plug.plugins.sourcemaps.init({
+        loadMaps: true
+      }))
+      .pipe(plug.plugins.sourcemaps.write('.', {
+        includeContent: true,
+        sourceRoot: '.'
+      }))
+      .pipe(plug.gulp.dest(dest))
+      .on('end', function() {
+        if (!watch) {
+          this.bundle.close();
+        } else if (watchMsg) {
+          plug.util.log(watchMsg);
+          watchMsg = false;
+        }
+      }.bind(this));
+  };
 
 }
 
 module.exports = [
 
-    'browserify javascripts',
+  'browserify javascripts',
 
-    function(done) {
+  function(done) {
 
-        var plug = this,
-            watch = plug.watchify === true,
-            src = path.join(plug.paths.assets, 'js'),
-            dest = path.join(plug.paths.staticAssets, 'js');
+    var plug = this,
+        watch = plug.watchify === true,
+        src = path.join(plug.paths.assets, 'js'),
+        dest = path.join(plug.paths.staticAssets, 'js');
 
-        glob('*.js', {cwd: src}, function(err, files) {
-            if (err) return plug.util.log(err);
-            eventStream.merge(files.map(function(file) {
-                var bundler = new Bundler(plug, file, src, dest, watch);
-                return bundler.output();
-            })).on('end', function() {
-                if (!watch) return done();
-            });
-        });
+    glob('*.js', {cwd: src}, function(err, files) {
+      if (err) return plug.util.log(err);
+      eventStream.merge(files.map(function(file) {
+        var bundler = new Bundler(plug, file, src, dest, watch);
+        return bundler.output();
+      })).on('end', function() {
+        if (!watch) return done();
+      });
+    });
 
-    }
+  }
 
 ];

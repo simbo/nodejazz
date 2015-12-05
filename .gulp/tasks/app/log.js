@@ -5,27 +5,28 @@ var childProcess = require('child_process'),
 
 module.exports = [
 
-    'show app process live log',
+  'show app process live log',
 
-    function(done) {
+  function(done) {
 
-        var pm2 = childProcess.spawn('pm2-dev', ['log'], {
-            cwd: process.cwd()
-        });
+    var pm2 = childProcess.spawn('pm2-dev', ['log'], {
+      cwd: process.cwd()
+    });
 
-        readline.createInterface({
-            input: pm2.stdout,
-            terminal: false
-        }).on('line', function(line) {
-            if (line.trim().length > 0) {
-                this.util.log(this.util.colors.gray('LOG') + ' ' + line);
-            }
-        }.bind(this));
+    readline.createInterface({
+      input: pm2.stdout,
+      terminal: false
+    }).on('line', function(line) {
+      if (line.trim().length > 0) {
+        this.util.log(this.util.colors.gray('LOG') + ' ' + line);
+      }
+    }.bind(this));
 
-        pm2.on('close', function() {
-            done();
-        });
-    }
+    pm2.on('close', function() {
+      done();
+    });
+
+  }
 
 ];
 
