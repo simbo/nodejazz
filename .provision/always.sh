@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source "/vagrant/.provision/provision.sh"
+source "/vagrant/.provision/provision-env.sh"
 
 cd /vagrant
 
