@@ -7,20 +7,20 @@ var assign = require('lodash.assign'),
 var env = process.env.NODE_ENV;
 
 var renderOptions = {
-    compileDebug: !(env === 'production'),
-    pretty: false,
-    debug: false,
-    cache: false
+  compileDebug: !(env === 'production'),
+  pretty: false,
+  debug: false,
+  cache: false
 };
 
 jade.filters.uglify = function(data) {
-    return env === 'production' ?
-        uglify.minify(data, {fromString: true}).code : data;
+  return env === 'production' ?
+    uglify.minify(data, {fromString: true}).code : data;
 };
 
 function renderer(path, options, fn) {
-    options = assign(renderOptions, options);
-    jade.renderFile(path, options, fn);
+  options = assign(renderOptions, options);
+  jade.renderFile(path, options, fn);
 }
 
 module.exports = jade;

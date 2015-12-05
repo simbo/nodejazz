@@ -31,7 +31,7 @@ app.use(express.static(config.paths.static));
 
 // apply routes
 config.routes.forEach(function(route) {
-    app.use(route[0], require('routes/' + route[1]));
+  app.use(route[0], require('routes/' + route[1]));
 });
 
 // catch 404 and forward to error handler
@@ -40,12 +40,14 @@ app.use(errorhandler.error404);
 // error handler
 app.use(errorhandler);
 
-// listen
-server = app.listen(
+// setup and listen
+setup(function() {
+  server = app.listen(
     config.settings.app.port,
     config.settings.app.host,
     function() {
-        var address = server.address();
-        logger.log('info', 'server started (listening on %s:%s)', address.address, address.port);
+      var address = server.address();
+      logger.log('info', 'server started (listening on %s:%s)', address.address, address.port);
     }
-);
+  );
+});

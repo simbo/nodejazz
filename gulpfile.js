@@ -6,18 +6,18 @@ var gulp = require('gulp'),
     Plug = require('gulpplug');
 
 var plug = new Plug(gulp, {
-    tasksDir: '.gulp/tasks'
+  tasksDir: '.gulp/tasks'
 });
 
 plug.pkg = require('./package.json');
 
-plug.paths = {
-    cwd: __dirname,
-    app: path.join(__dirname, 'app'),
-    assets: path.join(__dirname, 'app', 'assets'),
-    staticAssets: path.join(__dirname, 'app', 'static', 'assets')
-};
+plug.paths = (function(paths) {
+  paths.cwd = __dirname;
+  paths.app = path.join(__dirname, 'app');
+  paths.assets = path.join(__dirname, 'app', 'assets');
+  paths.staticAssets = path.join(__dirname, 'app', 'static', 'assets');
+})({});
 
 plug.loadPlugins()
-    .addTasks()
-    .addHelpTask();
+  .addTasks()
+  .addHelpTask();

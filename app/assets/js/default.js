@@ -3,5 +3,5 @@
 var $ = require('jquery');
 
 $(document).on('ready', function() {
-    console.log('DOM ready!');
+  console.log('DOM ready!');
 });

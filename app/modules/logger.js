@@ -16,12 +16,12 @@ winston.transports.DailyRotateFile = require('winston-daily-rotate-file');
 winston.transports.Couchdb = require('winston-couchdb').Couchdb;
 
 loglevels = {
-    error:   [0, 'red'],
-    warn:    [1, 'yellow'],
-    info:    [2, 'blue'],
-    verbose: [3, 'white'],
-    debug:   [4, 'green'],
-    silly:   [5, 'gray']
+  error:   [0, 'red'],
+  warn:    [1, 'yellow'],
+  info:    [2, 'blue'],
+  verbose: [3, 'white'],
+  debug:   [4, 'green'],
+  silly:   [5, 'gray']
 };
 
 mkdirp.sync(config.paths.log, {
@@ -29,39 +29,39 @@ mkdirp.sync(config.paths.log, {
 });
 
 logger = new winston.Logger({
-    levels: Object.keys(loglevels).reduce(function(levels, level) {
-        levels[level] = loglevels[level][0];
-        return levels;
-    }, {}),
-    exitOnError: env === 'production',
-    transports: [
-        new winston.transports.Console({
-            silent: env === 'production',
-            colorize: true,
-            handleExceptions: false,
-            timestamp: function() {
-                return moment(new Date()).format('hh:mm:ss');
-            },
-            prettyPrint: function(meta) {
-                var stack = meta.stack;
-                return '\n' + (Array.isArray(stack) ? stack.join('\n') : stack);
-            }
-        }),
-        new winston.transports.DailyRotateFile({
-            silent: env === 'development',
-            filename: path.join(config.paths.log, 'app'),
-            datePattern: '.yyyy-MM-dd.log',
-            handleExceptions: true
-        }),
-        new winston.transports.Couchdb({
-            silent: false,
-            host: config.settings.couch.host,
-            port: config.settings.couch.host,
-            db: 'log',
-            auth: config.settings.couch.connectionOptions.auth,
-            handleExceptions: true
-        })
-    ]
+  levels: Object.keys(loglevels).reduce(function(levels, level) {
+    levels[level] = loglevels[level][0];
+    return levels;
+  }, {}),
+  exitOnError: env === 'production',
+  transports: [
+    new winston.transports.Console({
+      silent: env === 'production',
+      colorize: true,
+      handleExceptions: false,
+      timestamp: function() {
+        return moment(new Date()).format('hh:mm:ss');
+      },
+      prettyPrint: function(meta) {
+        var stack = meta.stack;
+        return '\n' + (Array.isArray(stack) ? stack.join('\n') : stack);
+      }
+    }),
+    new winston.transports.DailyRotateFile({
+      silent: env === 'development',
+      filename: path.join(config.paths.log, 'app'),
+      datePattern: '.yyyy-MM-dd.log',
+      handleExceptions: true
+    }),
+    new winston.transports.Couchdb({
+      silent: false,
+      host: config.settings.couch.host,
+      port: config.settings.couch.host,
+      db: 'log',
+      auth: config.settings.couch.connectionOptions.auth,
+      handleExceptions: true
+    })
+  ]
 });
 
 winston.addColors(Object.keys(loglevels).reduce(function(levels, level) {
