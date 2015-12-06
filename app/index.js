@@ -9,7 +9,8 @@ var config = require('config'),
     errorhandler = require('modules/errorhandler'),
     logger = require('modules/logger'),
     renderer = require('modules/renderer'),
-    sessions = require('modules/sessions');
+    sessions = require('modules/sessions'),
+    setup = require('modules/setup');
 
 // scope vars
 var app = express(),

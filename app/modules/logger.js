@@ -2,8 +2,7 @@
 
 var path = require('path');
 
-var mkdirp = require('mkdirp'),
-    moment = require('moment'),
+var moment = require('moment'),
     winston = require('winston');
 
 var config = require('config');
@@ -23,10 +22,6 @@ loglevels = {
   debug:   [4, 'green'],
   silly:   [5, 'gray']
 };
-
-mkdirp.sync(config.paths.log, {
-    mode: parseInt('0755', 8) & ~process.umask() // eslint-disable-line no-bitwise
-});
 
 logger = new winston.Logger({
   levels: Object.keys(loglevels).reduce(function(levels, level) {
