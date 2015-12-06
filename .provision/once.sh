@@ -23,6 +23,11 @@ ln -sf /etc/nginx/sites-available/vagrant /etc/nginx/sites-enabled/vagrant
 
 service nginx restart
 
+# configure couchdb
+echo_c "Configuring couchdb..."
+
+curl -X PUT http://127.0.0.1:5984/_config/admins/dev -d '"dev"' &> /dev/null
+
 # set env
 echo_c "Configuring environment..."
 
