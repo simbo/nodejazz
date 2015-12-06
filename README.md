@@ -44,9 +44,9 @@ In the vm, in `/vagrant`…
 
 ### Browser
 
-  - **App** – [10.0.0.5](http://10.0.0.5/) or [localhost:8080](http://localhost:8080/)
-  - **CouchDB** – [10.0.0.5/couchdb](http://10.0.0.5/couchdb)
-  - **Futon** – [10.0.0.5/couchdb/_utils](http://10.0.0.5/couchdb/_utils)
+  - **App** ➜ [10.0.0.5](http://10.0.0.5/) or [localhost:8080](http://localhost:8080/)
+  - **CouchDB** ➜ [10.0.0.5/couchdb](http://10.0.0.5/couchdb)
+  - **Futon** ➜ [10.0.0.5/couchdb/_utils](http://10.0.0.5/couchdb/_utils)
 
 
 ## License
