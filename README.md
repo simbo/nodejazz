@@ -48,6 +48,8 @@ In the vm, in `/vagrant`…
   - **CouchDB** ➜ [10.0.0.5/couchdb](http://10.0.0.5/couchdb)
   - **Futon** ➜ [10.0.0.5/couchdb/_utils](http://10.0.0.5/couchdb/_utils)
 
+CouchDB Credentials: `dev` / `dev`
+
 
 ## License
 
